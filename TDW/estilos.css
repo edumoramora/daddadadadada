@@ -1,0 +1,65 @@
+.body {
+  background-color: rgb(58, 58, 58);
+  margin: 10px 110px 110px;
+}
+
+.h1 {
+  color: orange;
+  text-align: center;
+}
+
+.fieldset {
+  border: 5px solid #ff9900;
+  margin: 20px 20px 10px;
+}
+
+.navbar .mr-2 {
+  color: orange;
+}
+
+.navbar .navbar-expand-lg {
+  background-color: orange;
+}
+
+.card-body {
+  background-color: #A9A9A9 ;
+  font-size: 1.4rem;
+}
+
+.card-title{
+  text-align: center;
+}
+
+.card-text{
+  text-align: center;
+}
+
+.main {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.column {
+  width: 50%;
+  float: left;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 85%;
+}
+
+.iframe-estilo {
+  height: 500px;
+  width: 100%;
+  border: none;
+  margin-top: 20px;
+}
+
+.label{
+  color :white;
+}
+
+

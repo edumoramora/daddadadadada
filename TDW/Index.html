@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <title>Anales de la Ciencia</title>
+    <script src="datos.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script  src="Carga.js"></script>
+  </head>
+
+  <body class="body">
+
+        <fieldset class="fieldset">
+            <h1 class="h1">Anales de la Ciencia</h1>
+        </fieldset>
+ 
+        <nav class="navbar navbar-expand-lg ">
+          <form id="formulario-login" class="form-inline mx-auto" method="POST">
+              <label class="mr-2" for="usuario">Usuario: </label>
+              <input class="form-control mr-2" type="text" name="usuario" required>
+              <label class="mr-2" for="password">Contraseña: </label>
+              <input class="form-control mr-2" type="password" name="password" required>
+              <button class="btn btn-primary" type="submit">Login</button>
+            </form>
+            <button class="btn btn-danger ml-2 d-none" id="logout-btn" type="button">Logout</button>
+        </nav>
+        <br>
+
+        
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+                    <div class="card" >
+                      <div class="card-body">
+                        <h5 class="card-title">Programas</h5>
+                        <body onload="construirProgramas()">
+                          <div id="programas"></div>
+                        </body>
+                      </div>
+                    </div>  <div class="container-btn mt-3 text-center" data-categoria="programas">
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-4 mb-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Celebridades</h5>
+                        <body onload="construirPersonas()">
+                            <div id="personas"></div>
+                          </body>
+                      </div>
+                    </div> <div class="container-btn mt-3 text-center" data-categoria="personas" >
+                     
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Empresas</h5>
+                        <body onload="construirEmpresas()">
+                            <div id="empresas"></div>
+                          </body>
+                      </div>
+                    </div>
+                    <div class="container-btn mt-3 text-center" data-categoria="empresas"> </div>
+                  </div>
+                </div>
+              </div>
+        </main>
+ 
+    </body>
+</html>
+

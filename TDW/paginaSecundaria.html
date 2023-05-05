@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head> <title>Anales de la Ciencia</title> <link rel="stylesheet" type="text/css" href="estilos.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script  src="Secudario.js"></script>
+</head>
+
+  <body class="body">
+       
+        <fieldset class="fieldset">
+          <h1 class="h1">Anales de la Ciencia</h1>
+        </fieldset>
+
+        <nav>
+          <ul>
+            <li><a href="#" id="inicio">Inicio</a></li>
+          </ul>
+        </nav>
+        
+        <main>
+          <div class="container">
+            <div class="row mt-4 align-items-center">
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <body onload="construirIndex()">
+                        <h5 class="card-title">Programas</h5>
+                        <div id="seleccionado"></div>
+                      </body>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <iframe class="iframe-estilo" id="seleccionadoWiki"></iframe>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="footer">
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <a href="pagina html.html">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/HTML5_logo_black.svg/2048px-HTML5_logo_black.svg.png" width="100px">  
+              </a>
+              <img src="https://upload.wikimedia.org/wikipedia/fr/e/e0/Logo_CERN.jpg" width="100px">
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="https://www.vectorlogo.zone/logos/w3c/w3c-ar21.png" width="130px">
+             
+            </div>
+          </div>
+      </footer>
+  
+    </body>
+</html>
