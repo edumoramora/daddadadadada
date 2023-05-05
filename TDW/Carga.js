@@ -1,82 +1,66 @@
 
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
   var sesionExitosa = localStorage.getItem('sesionExitosa');
  
-
-    if(!sesionExitosa){
-      localStorage.setItem('datos', JSON.stringify(datos));
-    }
-    
-    localStorage.setItem('login', JSON.stringify(login));
-    
-    construirProgramas(sesionExitosa);
-    construirPersonas(sesionExitosa);
-    construirEmpresas(sesionExitosa);
+  const formularioLogin = document.getElementById('formulario-login');
+  const logoutBtn = document.getElementById('logout-btn');
  
 
-document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-  
-  
-
-    var user = document.querySelector("input[name='usuario']").value;
-    var password = document.querySelector("input[name='password']").value;
-    const formularioLogin = document.getElementById('formulario-login');
-    const logoutBtn = document.getElementById('logout-btn');
-    
-    const usuarios = JSON.parse(localStorage.getItem("login"));
-    const usuarioEncontrado = usuarios.find(usuario => usuario.usuario === user && usuario.password === password);
-    
-  
-    if (usuarioEncontrado) {
-      localStorage.setItem('sesionExitosa', 'true');
-      alert('Inicio de sesión exitoso');
+      if(!sesionExitosa){
+        localStorage.setItem('datos', JSON.stringify(datos));
+      }
       
-      formularioLogin.classList.add('d-none');
-      logoutBtn.classList.remove('d-none');
-     
-      $('.card-body .eliminar').each(function() {
-        var $this = $(this);
-     
-        var button = $('<button/>', {
-            text: 'Eliminar',
-            class: 'btn btn-danger ml-2',
-            click: function() { 
-              var nombreEliminado = $this.attr('data-nombre');
-              if (eliminarPorNombre(nombreEliminado)) {
-                $(this).parent().remove();
-              }
-          }
-      });
-      $this.append(button);
-  });
-   
+      localStorage.setItem('login', JSON.stringify(login));
+      
+      construirProgramas(sesionExitosa);
+      construirPersonas(sesionExitosa);
+      construirEmpresas(sesionExitosa);
+ 
+      if (!sesionExitosa) {
+        console.log("Sesion no EZito");
+  document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
     
-      $('.container-btn').each(function() {
-        var addButton = $('<button/>', {
-          text: 'Añadir elemento',
-          class: 'btn btn-success mt-3',
-          click: function() {
-            var categoria = $(this).parent().data('categoria');
-            localStorage.setItem('categoria', categoria);
-             window.location.href = 'nuevo.html';
-
-          }
-        });
-        $(this).append(addButton);
+    
+    
+      var user = document.querySelector("input[name='usuario']").value;
+      var password = document.querySelector("input[name='password']").value;
+      const usuarios = JSON.parse(localStorage.getItem("login"));
+      const usuarioEncontrado = usuarios.find(usuario => usuario.usuario === user && usuario.password === password);
+      
+    
+      if (usuarioEncontrado) {
+        localStorage.setItem('sesionExitosa', 'true');
+        alert('Inicio de sesión exitoso');
+        
+        formularioLogin.classList.add('d-none');
+        logoutBtn.classList.remove('d-none');
+      
+        construirBotonesEliminar();
+        construirBotonesAgregar();
+    
+      } else {
+        alert('El correo electrónico o la contraseña son incorrectos');
+      }
+    
+      logoutBtn.addEventListener('click', () => {
+      window.location.href = "Index.html";
       });
-  
-  
-    } else {
-      alert('El correo electrónico o la contraseña son incorrectos');
-    }
-  
-    logoutBtn.addEventListener('click', () => {
-    window.location.href = "Index.html";
     });
+  }
+  else{
+    console.log("EZITO");
+
+    formularioLogin.classList.add('d-none');
+    logoutBtn.classList.remove('d-none');
+  
+    construirBotonesEliminar();
+    construirBotonesAgregar();
+  }
   });
-});
 
 
 
@@ -185,8 +169,45 @@ function crearHTML(datos) {
     return false;
   }
 
-const loginForm = document.getElementById('login-form');
+  function construirBotonesEliminar() {
+    $('.card-body .eliminar').each(function() {
+      var $this = $(this);
+  
+      var button = $('<button/>', {
+        text: 'Eliminar',
+        class: 'btn btn-danger ml-2',
+        click: function() { 
+          var nombreEliminado = $this.attr('data-nombre');
+          if (eliminarPorNombre(nombreEliminado)) {
+            $(this).parent().remove();
+          }
+        }
+      });
+  
+      $this.append(button);
+    });
+  }
+  
+  function construirBotonesAgregar() {
+    $('.container-btn').each(function() {
+      var addButton = $('<button/>', {
+        text: 'Añadir elemento',
+        class: 'btn btn-success mt-3',
+        click: function() {
+          var categoria = $(this).parent().data('categoria');
+          localStorage.setItem('categoria', categoria);
+          window.location.href = 'nuevo.html';
+        }
+      });
+  
+      $(this).append(addButton);
+    });
+  }
+  
+ 
+  
 
+const loginForm = document.getElementById('login-form');
 
   
 
