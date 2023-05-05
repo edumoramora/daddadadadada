@@ -1,7 +1,6 @@
 
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
   var sesionExitosa = localStorage.getItem('sesionExitosa');
  
@@ -20,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
       construirEmpresas(sesionExitosa);
  
       if (!sesionExitosa) {
-        console.log("Sesion no EZito");
-  document.querySelector('form').addEventListener('submit', function(event) {
+      console.log("Sesion no EZito");
+      document.querySelector('form').addEventListener('submit', function(event) {
       event.preventDefault();
     
     
@@ -47,7 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     
       logoutBtn.addEventListener('click', () => {
-      window.location.href = "Index.html";
+        localStorage.clear();
+        formularioLogin.classList.remove('d-none');
+        logoutBtn.classList.add('d-none');
+        location.reload();
       });
     });
   }
@@ -128,13 +130,11 @@ function crearHTML(datos) {
   function guardarNombre(nombre) {
     localStorage.setItem('Seleccionado', nombre);
   }
-
-  function eliminarPorNombre(nombre) {
-    var datosJson = localStorage.getItem('datos');
-    var datos = JSON.parse(datosJson);
-  
-    var categoria = 'programas';
-    var index = datos[categoria].findIndex(function(item) {
+  function eliminarPorNombre(nombre, categoria) {
+    const datosJson = localStorage.getItem('datos');
+    const datos = JSON.parse(datosJson);
+    
+    const index = datos[categoria].findIndex(function(item) {
       return item.nombre === nombre;
     });
     
@@ -142,32 +142,11 @@ function crearHTML(datos) {
       datos[categoria].splice(index, 1);
       localStorage.setItem('datos', JSON.stringify(datos));
       return true;
-    } 
-  
-  
-
-    index = datos.empresas.findIndex(function(item) {
-      return item.nombre === nombre;
-    });
-    if (index !== -1) {
-      datos.empresas.splice(index, 1);
-      const datosJson = JSON.stringify(datos.empresas);
-      localStorage.setItem('datos', datosJson);
-      return true;
     }
-  
-    index = datos.personas.findIndex(function(item) {
-      return item.nombre === nombre;
-    });
-    if (index !== -1) {
-      datos.personas.splice(index, 1);
-      const datosJson = JSON.stringify(datos.personas);
-      localStorage.setItem('datos', datosJson);
-      return true;
-    }
-  
+    
     return false;
   }
+
 
   function construirBotonesEliminar() {
     $('.card-body .eliminar').each(function() {
@@ -178,13 +157,17 @@ function crearHTML(datos) {
         class: 'btn btn-danger ml-2',
         click: function() { 
           var nombreEliminado = $this.attr('data-nombre');
-          if (eliminarPorNombre(nombreEliminado)) {
+          const categoria = $this.closest('.card').find('.card-title').data('categoria');
+        
+          console.log(nombreEliminado,categoria);
+          
+          if (eliminarPorNombre(nombreEliminado,categoria)) {
             $(this).parent().remove();
           }
         }
       });
   
-      $this.append(button);
+      $(this).append(button);
     });
   }
   
@@ -209,5 +192,5 @@ function crearHTML(datos) {
 
 const loginForm = document.getElementById('login-form');
 
-  
 
+  
